@@ -5,10 +5,9 @@ from django.contrib import admin
 from shop.models import Category,Product
 
 @admin.register(Category)
+#     decorator for display category in admin site 
 class CategoryAdmin(admin.ModelAdmin):
-    '''
-        
-    '''
+
     list_display = ['name','slug']  #display name,slug in list_display page
     prepopulated_fields = {'slug': ('name',)} #automatic filling slug when name entering
 

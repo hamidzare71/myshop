@@ -1,16 +1,9 @@
 @import url(http://fonts.googleapis.com/css?family=Ubuntu);
-@import url(https://fonts.googleapis.com/css?family=Katibeh);
-@import url(https://fonts.googleapis.com/css?family=Lalezar);
-/*notes about fonts:
- *Ubuntu is default english
- *Katibeh is persian for text
- *and Lalezar for titles(on my choice)
- * */
+
 body { 
     margin:0;
     padding:0;
-    /* font-family:helvetica, sans-serif;  */
-    font-family: Lalezar, cursive;
+    font-family:helvetica, sans-serif; 
 }
 
 h1, h2, h3, h4, h5 , h6 { 
@@ -29,7 +22,7 @@ a:hover {
 a.button, input[type="submit"] {
     color:#fff;
     background:#5993bb;
-    border-radius:5px;
+    border-radius:4px;
     padding:10px 20px;
     font-size:14px;
     border:0;
@@ -45,8 +38,7 @@ a.button.light {
 }
 
 .text-right {
-    text-align:left;
-    direction:rtl;
+    text-align:right;
 }
 
 table {
@@ -58,7 +50,7 @@ table {
 table th, table td {
     text-align:left;
     font-size:14px;
-    padding:25px;
+    padding:10px;
     margin:0;
 }
 
@@ -74,11 +66,10 @@ thead th, tbody tr.total {
     background:#5993bb;
     color:#fff;
     font-weight:bold;
-    font-size:18px;
 }
 
 table.cart {
-    margin-bottom:30px;
+    margin-bottom:40px;
 }
 
 table.cart img {
@@ -90,7 +81,7 @@ tbody td.num {
 }
 
 td input[type="submit"] {
-    font-size:14px;
+    font-size:12px;
     padding:4px 10px;
 }
 
@@ -119,7 +110,7 @@ ul.errorlist {
    float:left;
    color:#ff0000;
    clear:both;
-   font-size:14px;
+   font-size:13px;
    margin:0; 
    padding:0;
 }
@@ -139,220 +130,201 @@ ul.errorlist {
 }
 
 #header .logo {
-    /* font-family: 'Ubuntu', sans-serif; */
-	font-family: Lalezar, cursive;
-	float:right;
-	color:#333;
-	font-size:32px;
-	margin-right:10%;
-	text-shadow: 4px 4px 4px #aaa;
+    font-family: 'Ubuntu', sans-serif;
+    float:left;
+    color:#333;
+    font-size:22px;
+    margin-right:10%;
 }
 
 #subheader .cart {
-	float:right;
-	/* direction:ltr; */
-	padding-top:4px;
+    float:right;
+    padding-top:4px;
 }
 
 #content {
-	padding:0 100px;
-	overflow:hidden;
-	direction:rtl;
+    padding:0 100px;
+    overflow:hidden;
 }
 
 #sidebar {
-	width:220px;
-	padding:50px 20px 0 0;
-	float:right;
-	font-family:Katibeh, cursive;
-	font-size:25px;
-}
-
-#sidebar h3{
-	font-family:Katibeh, cursive;
-	font-size:28px;
+    width:220px;
+    padding:30px 20px 0 0;
+    float:left;
 }
 
 #sidebar ul{
-	margin:0;
-	padding:0;
+    margin:0;
+    padding:0;
 }
 
 #sidebar ul li {
-	margin:0;
-	list-style:none;
-	padding:10px 14px;
+    margin:0;
+    list-style:none;
+    padding:10px 14px;
 }
 
 #sidebar ul li a {
-	display:block;
+    display:block;
 }
 
 #sidebar ul li.selected {
-	background:#5993bb;
-	border-radius:4px;
-	font-size:19px;
+    background:#5993bb;
+    border-radius:4px;
 }
 
 #sidebar ul li.selected a {
-	color:#fff;
+    color:#fff;
 }
 
 #main {
-	float:left;
-	width: 96%;
-	margin-right:-220px; 
-	overflow:hidden;
+    float:left;
+    width: 96%;
+    margin-right:-220px; 
+    overflow:hidden;
 }
 
 .product-list .item {
-	width:25%;
-	padding:10px 20px 10px 0;
-	float:left;
-	text-align:center;
-	line-height:1.2;
+    width:25%;
+    padding:10px 20px 10px 0;
+    float:left;
+    text-align:center;
+    line-height:1.2;
 }
 
 .product-list .item img {
-	width:100%;
-	margin-bottom:8px;
+    width:100%;
+    margin-bottom:8px;
 }
 
 .product-detail {
-	text-align:justify;
-	direction:rtl;
+    text-align:justify;
 }
 
 .product-detail .price {
-	color:#333;
-	font-size:28px;
-	font-weight:bold;
+    color:#333;
+    font-size:28px;
+    font-weight:bold;
 }
 
 .product-detail img {
-	width:40%;
-	float:left;
-	padding:0 20px 20px 0;
+    width:40%;
+    float:left;
+    padding:0 20px 20px 0;
 }
 
 .product-detail h1 {
-	margin-bottom:0;
+    margin-bottom:0;
 }
 
 .product-detail h2 {
-	margin-top:10px;
+    margin-top:10px;
 }
 
 .order-form {
-	/* float:left; */
-	float:right;
+    float:left;
 }
 
 .order-info {
-	/* float:right; */
-	float:left;
-	width:300px;
-	background:#efefef;
-	padding:10px 20px;
-	color:#333;
-	border-bottom:4px solid #5993bb;
+    float:right;
+    width:300px;
+    background:#efefef;
+    padding:10px 20px;
+    color:#333;
+    border-bottom:4px solid #5993bb;
 }
 
 .order-info h3 {
-	color:#5993bb;
+    color:#5993bb;
 }
 
-.order-info ul li{
-	margin:0;
-	padding:0;
-	font-size:14px;
-	float:left;
-	/* float:right; */
-	direction:ltr;
-	/* direction:rtl; */
+.order-info ul li {
+    margin:0;
+    padding:0;
+    font-size:14px;
 }
 
 .order-info p {
-	font-weight:bold;
-	float:right;
+    font-weight:bold;
+    float:right;
 }
 
 .order-info span {
-	float:right;
+    float:right;
 }
 
 .neg {
-	color:#dc1616;
+    color:#dc1616;
 }
 
 .languages {
-	float:right;
-	padding-top:4px;
-	font-size:14px;
+   float:right;
+   padding-top:4px;
+   font-size:14px;
 }
 
 .languages ul {
-	list-style:none;
-	margin:0;
-	padding:0;
-	float:left;
+    list-style:none;
+    margin:0;
+    padding:0;
+    float:left;
 }
 
 .languages ul li {
-	float:left;
-	margin:0 0 0 10px;
-	font-size:14px;
+    float:left;
+    margin:0 0 0 10px;
+    font-size:14px;
 }
 
 .languages p {
-	float:left;
-	margin:0;
+    float:left;
+    margin:0;
 }
 
 .recommendations {
-	clear:both;
+    clear:both;
 }
 
 .recommendations div {
-	float:left;
+    float:left;
 }
 
 .recommendations img {
-	width:200px
+    width:200px
 }
 
 .recommendations p {
-	clear:both;
+    clear:both;
 }
 
 .recommendations.cart {
-	width:60%;
-	float:left;
-	overflow:auto;
+    width:60%;
+    float:left;
+    overflow:auto;
 }
 
 .recommendations.cart h3 {
-	margin-top:0;
+    margin-top:0;
 }
 
 .recommendations.cart .item {
-	margin-right:10px;
+    margin-right:10px;
 }
 
 .recommendations.cart img {
-	width:120px;
+    width:120px;
 }
 
 /* braintree hosted fields */
 form div.field {
-	font-size:13px;
-	color:#666;
-	width:300px;
-	height:22px;
-	margin-bottom:10px;
-	padding:6px 12px;
-	border:0;
-	background:#efefef;
-	color:#666;
-	border-radius:4px;
+    font-size:13px;
+    color:#666;
+    width:300px;
+    height:22px;
+    margin-bottom:10px;
+    padding:6px 12px;
+    border:0;
+    background:#efefef;
+    color:#666;
+    border-radius:4px;
 }

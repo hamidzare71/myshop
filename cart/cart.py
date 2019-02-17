@@ -39,7 +39,7 @@ class Cart(object):
 
     #method5
     def save(self):
-        #         make the session as 'modified' and need to save
+        #make the session as 'modified' and need to save
         self.session.modified = True
 
 

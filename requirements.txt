@@ -1,5 +1,4 @@
 amqp==2.4.0
-Babel==2.6.0
 backcall==0.1.0
 billiard==3.5.0.5
 braintree==3.51.0
@@ -23,6 +22,7 @@ idna==2.8
 ipython==7.1.1
 ipython-genutils==0.2.0
 jedi==0.13.1
+Khayyam==3.0.17
 kombu==4.2.2.post1
 localflavor==1.8
 nltk==3.4
@@ -52,6 +52,7 @@ tornado==5.1.1
 traitlets==4.3.2
 urllib3==1.24.1
 vine==1.2.0
+virtualenv==16.4.0
 wcwidth==0.1.7
 WeasyPrint==44
 webencodings==0.5.1

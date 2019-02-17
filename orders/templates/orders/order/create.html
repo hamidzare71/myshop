@@ -1,28 +1,53 @@
 {% extends "shop/base.html" %}
+{% load humanize %}
 
 {% block title %}
-Checkout
+    سفارش
 {% endblock %}
 
 
 {% block content %}
-<h1>Checkout</h1>
+    <h1>پرداخت سفارش</h1>
 
-<div class="order-info">
-	<h3>Your order</h3>
-	<ul>
-		{% for item in cart %}
-		<li>
-			{{ item.quantity }}x {{ item.product.name }}
-			<span>${{ item.total_price }}</span>
-		</li>
-		{% endfor %}
-	</ul>
-	<p>Total: ${{ cart.get_total_price }}</p>
-</div>
-<form action="." method="post" class="order-form">
-	{{ form.as_p }}
-	<p><input type="submit" value="Place order"></p>
-	{% csrf_token %}
-</form>
+    <div class="order-info">
+        <h3>سفارش شما</h3>
+        <ul>
+            {% for item in cart %}
+                <br>
+                <li>
+                    {{ item.product.name }} x {{ item.quantity }}  =  {{ item.total_price |intcomma}} 
+                    {#{ item.total_price |intcomma}} = {{item.product.name }} x {{item.quantity}#}
+                </li>
+
+            {% endfor %}
+        </ul>
+        <h4><br><br>مجموع: {{ cart.get_total_price | intcomma }} تومان</h4>
+    </div>
+    <form action="." method="post" class="order-form">
+        {#{ form.as_p }#}
+
+        <div>
+            <label for="first_name">نام:</label><br> 
+            <input type="text" id="first name="first_name" maxlength="100" required> <br> 
+
+            <label for="last_name">نام خانوادگی:</label> 
+            <input type="text" name="last_name" maxlength="100" required> <br> 
+
+            <label for="email">ایمیل:</label> 
+            <input type="text" name="email" maxlength="100" required> <br> 
+
+            <label for="address">آدرس:</label> 
+            <input type="text" name="address" maxlength="100" required> <br> 
+
+            <label for="postal_code">کدپستی:</label> 
+            <input type="text" name="postal_code" maxlength="100" required> <br> 
+
+            <label for="city">شهر:</label> 
+            <input type="text" name="city" maxlength="100" required> <br> 
+        </div>
+
+        <p><input type="submit" value="Place order"></p><br> 
+        {% csrf_token %}
+    </form>
+
 {% endblock %}

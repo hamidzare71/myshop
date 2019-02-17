@@ -7,7 +7,9 @@ from .tasks import order_created
 def order_create(request):
     cart = Cart(request)
     if request.method == 'POST':
-        form = OrderCreateForm(request.POST)
+        form = OrderCreateForm(request.POST)	#binding data to form(bound form)
+	# further more: https://docs.djangoproject.com/en/2.1/topics/forms/
+
         if form.is_valid():
             order = form.save()
             for item in cart:
