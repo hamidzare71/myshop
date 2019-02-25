@@ -22,10 +22,12 @@ a:hover {
 a.button, input[type="submit"] {
     color:#fff;
     background:#5993bb;
-    border-radius:4px;
+    border-radius:5px;
     padding:10px 20px;
     font-size:14px;
     border:0;
+    margin:5px;
+    
 }
 
 a.button.light {
@@ -57,6 +59,9 @@ table th, table td {
 tbody tr:nth-child(odd) {
     background:#efefef;
 }
+tbody tr:nth-child(even) {
+    background:#f8f9f2;
+}
 
 tbody tr.subtotal {
     background:#ccc;
@@ -86,7 +91,7 @@ td input[type="submit"] {
 }
 
 form p label, form p input {
-    float:left;
+    float:right;
     clear:both;
 }
 
@@ -107,12 +112,12 @@ form p input {
 }
 
 ul.errorlist {
-   float:left;
-   color:#ff0000;
-   clear:both;
-   font-size:13px;
-   margin:0; 
-   padding:0;
+    float:left;
+    color:#ff0000;
+    clear:both;
+    font-size:13px;
+    margin:0; 
+    padding:0;
 }
 
 
@@ -222,14 +227,15 @@ ul.errorlist {
 }
 
 .order-form {
-    float:left;
+    float:right;
+    direction:rtl;
 }
 
 .order-info {
-    float:right;
+    float:left;
     width:300px;
     background:#efefef;
-    padding:10px 20px;
+    padding-top:5px;
     color:#333;
     border-bottom:4px solid #5993bb;
 }
@@ -258,9 +264,9 @@ ul.errorlist {
 }
 
 .languages {
-   float:right;
-   padding-top:4px;
-   font-size:14px;
+    float:right;
+    padding-top:4px;
+    font-size:14px;
 }
 
 .languages ul {

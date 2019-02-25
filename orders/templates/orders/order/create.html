@@ -7,47 +7,59 @@
 
 
 {% block content %}
-    <h1>پرداخت سفارش</h1>
 
-    <div class="order-info">
-        <h3>سفارش شما</h3>
-        <ul>
-            {% for item in cart %}
-                <br>
-                <li>
-                    {{ item.product.name }} x {{ item.quantity }}  =  {{ item.total_price |intcomma}} 
-                    {#{ item.total_price |intcomma}} = {{item.product.name }} x {{item.quantity}#}
-                </li>
+    <!--order-form-->
+    <div style="margin-right:10px;margin-left:10px">
+        <h1>پرداخت سفارش</h1>
 
-            {% endfor %}
-        </ul>
-        <h4><br><br>مجموع: {{ cart.get_total_price | intcomma }} تومان</h4>
-    </div>
-    <form action="." method="post" class="order-form">
-        {#{ form.as_p }#}
-
-        <div>
-            <label for="first_name">نام:</label><br> 
-            <input type="text" id="first name="first_name" maxlength="100" required> <br> 
-
-            <label for="last_name">نام خانوادگی:</label> 
-            <input type="text" name="last_name" maxlength="100" required> <br> 
-
-            <label for="email">ایمیل:</label> 
-            <input type="text" name="email" maxlength="100" required> <br> 
-
-            <label for="address">آدرس:</label> 
-            <input type="text" name="address" maxlength="100" required> <br> 
-
-            <label for="postal_code">کدپستی:</label> 
-            <input type="text" name="postal_code" maxlength="100" required> <br> 
-
-            <label for="city">شهر:</label> 
-            <input type="text" name="city" maxlength="100" required> <br> 
+        <div class="order-info" style="border-radius:1em;overflow:hidden;">
+            <h3 class="text-center" >سفارش شما</h3>
+            <ul style="direction:ltr;">
+                {% for item in cart %}
+                    <br>
+                    <li>
+                        {{ item.product.name }} x {{ item.quantity }}  =  {{ item.total_price |intcomma}} 
+                        {#{ item.total_price |intcomma}} = {{item.product.name }} x {{item.quantity}#}
+                    </li>
+                {% endfor %}
+            </ul>
+            <h4 class="text-center"><br><br><strong>مجموع: {{ cart.get_total_price | intcomma }} تومان</strong></h4>
         </div>
-
-        <p><input type="submit" value="Place order"></p><br> 
-        {% csrf_token %}
-    </form>
-
+        <!-- <form action="." method="post" class="order-form"> -->
+        <form action="." method="post" class="order-form">
+            {% csrf_token %}
+            {#{ form.as_p }#}
+            <div style="margin-right:20px;">
+                <table style="border-radius:1em;overflow:hidden;">
+                    <tr>
+                        <td><label for="first_name">نام:</label><br></td>
+                        <td><input type="text" id="first name="first_name  maxlength="100" required> <br></td>
+                    </tr>
+                    <tr>
+                        <td><label for="last_name">نام خانوادگی:</label></td>
+                        <td><input type="text" name="last_name" maxlength="100" required> <br></td>
+                    </tr>
+                    <tr>
+                        <td><label for="email">ایمیل:</label></td>
+                        <td><input type="email" name="email" maxlength="100" required> <br></td>
+                    </tr>
+                    <tr>
+                        <td><label for="address">آدرس:</label></td>
+                        <td><input type="text" name="address" maxlength="100" required> <br></td>
+                    </tr>
+                    <tr>
+                        <td><label for="postal_code">کدپستی:</label></td>
+                        <td><input type="text" name="postal_code" maxlength="100" required> <br></td>
+                        #TODO
+                        find api for use iran-post-Co to find city with postal-code
+                    </tr>
+                    <tr>
+                        <td><label for="city">شهر:</label></td>
+                        <td><input type="text" name="city" maxlength="100" required> <br></td>
+                    </tr>
+                </table>
+                <p><input type="submit" value="درخواست و تایید سفارش"></p><br> 
+            </div>
+        </form>
+    </div><!--order-form-->
 {% endblock %}

@@ -4,33 +4,158 @@
 
 <html>
     <head>
+
         <meta charset="utf-8" />
         <title>{% block title %} title in base not overrided {% endblock %}</title>
-        <link href="{% static "css/base.css" %}" rel="stylesheet">
+
+        <!-- offline usage -->
+        <link rel="stylesheet" href="{% static "css/new_base.css" %}">
+        <link rel="stylesheet" href="{% static "css/base_shop.css" %}">
+        <link rel="stylesheet" href="{% static "bootstrap-3.3.7-dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" %}">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!--OFFLINE-->
+        <!--it doesn't work anymore-->
+        <!-- <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}"> -->
+        <!--CDN-->
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+
+
     </head>
+
     <body>
 
-        <div id="header">
-            <a href="/" class="logo">به وبسایت فروشگاه  خوش آمدید</a>
-        </div>
-        <div id="subheader">
-            <div class="cart">
-                {% with total_items=cart|length %}
-                    {% if cart|length > 0 %}
-                        موجودی سبد خرید شما:   
-                        <a href="{% url "cart:cart_detail" %}">
-                            {{ total_items }} کالا به {{ total_items|pluralize:" مجموع " }} ارزش 
-                            {{ cart.get_total_price | intcomma }} تومان
-                        </a>
-                    {% else %}
-                        سبد خرید شما خالیه.
-                    {% endif %}
-                {% endwith %}
+        <!--Header-->
+        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top "  >
+
+            <!--collapse-->
+            <div class="container-fluid navbar-header navbar-right" >
+                <button type="button" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" class="navbar-toggle collapsed " data-toggle="collapse" >
+
+                    <!--  Code for the hamburger icon-->
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand " href="/" >وبسایت فروشگاه 
+                    <span class="glyphicon glyphicon-home" aria-hidden="true" ></span>
+                </a>
             </div>
-        </div>
-        <div id="content">
+
+            <!-- Anything inside of collapse navbar-collapse goes into the "hamburger" -->
+            <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1" style="float:right;direction:rtl;" >
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        {% with total_items=cart|length %}
+                            {% if cart|length > 0 %}
+                                <a href="{% url "cart:cart_detail" %}">
+                                    <span 
+                                   class="glyphicon glyphicon-shopping-cart" style="direction:rtl;" aria-hidden="true">
+                                    </span>خرید:   
+                                    {{ total_items }} کالا به {{ total_items|pluralize:"مجموع " }} ارزش 
+                                    {{ cart.get_total_price | intcomma }} تومان است
+                                </a>
+                            {% else %}
+                                <a href=""><span class="glyphicon glyphicon-shopping-cart" style="direction:rtl;" aria-hidden="true">
+                                    </span>سبد خرید شما خالیه
+                                </a>
+
+                            {% endif %}
+                        {% endwith %}
+                    </li>
+                    <li><a href="#">وبلاگ</a></li>
+                </ul><!--End-collapse-items-->
+
+            </div><!--End-collapse navbar-->
+            <ul class="nav navbar-nav navbar-left" >
+                <li style="padding-top:0;"><a href="/admin">ورود <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a></li>
+            </ul>
+        </nav><!--End-Header-->
+
+
+
+
+        <!--block-content------------------------------>
+        <div style="margin-top:90px;margin-bottom:90px;"">
             {% block content %}
             {% endblock %}
+        </div><!--.endblock------------------------------>
+
+
+
+
+
+        <!-- Footer -->
+        <footer class="footer py-5 navbar-inverse" style="position: fixed!important;">
+            <div class="container">
+                <!-- <p class="m-0 text-center" >Copyright &copy; Your Website 2019</p> -->
+
+                <p class="m-0 text-center">
+                <span>
+                    <a class="m-0 text-center" href="https://github.com/hamidzare71/myshop/">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="28"  aria-label="GitHub" >
+                            <title>project source on Github</title>
+                            <path d="M12 2c6.625 0 12 5.375 12 12 0 5.297-3.437 9.797-8.203 11.391-.609.109-.828-.266-.828-.578 0-.391.016-1.687.016-3.297 0-1.125-.375-1.844-.812-2.219 2.672-.297 5.484-1.313 5.484-5.922 0-1.313-.469-2.375-1.234-3.219.125-.313.531-1.531-.125-3.187-1-.313-3.297 1.234-3.297 1.234a11.28 11.28 0 0 0-6 0S6.704 6.656 5.704 6.969c-.656 1.656-.25 2.875-.125 3.187-.766.844-1.234 1.906-1.234 3.219 0 4.594 2.797 5.625 5.469 5.922-.344.313-.656.844-.766 1.609-.688.313-2.438.844-3.484-1-.656-1.141-1.844-1.234-1.844-1.234-1.172-.016-.078.734-.078.734.781.359 1.328 1.75 1.328 1.75.703 2.141 4.047 1.422 4.047 1.422 0 1 .016 1.937.016 2.234 0 .313-.219.688-.828.578C3.439 23.796.002 19.296.002 13.999c0-6.625 5.375-12 12-12zM4.547 19.234c.031-.063-.016-.141-.109-.187-.094-.031-.172-.016-.203.031-.031.063.016.141.109.187.078.047.172.031.203-.031zm.484.532c.063-.047.047-.156-.031-.25-.078-.078-.187-.109-.25-.047-.063.047-.047.156.031.25.078.078.187.109.25.047zm.469.703c.078-.063.078-.187 0-.297-.063-.109-.187-.156-.266-.094-.078.047-.078.172 0 .281s.203.156.266.109zm.656.656c.063-.063.031-.203-.063-.297-.109-.109-.25-.125-.313-.047-.078.063-.047.203.063.297.109.109.25.125.313.047zm.891.391c.031-.094-.063-.203-.203-.25-.125-.031-.266.016-.297.109s.063.203.203.234c.125.047.266 0 .297-.094zm.984.078c0-.109-.125-.187-.266-.172-.141 0-.25.078-.25.172 0 .109.109.187.266.172.141 0 .25-.078.25-.172zm.906-.156c-.016-.094-.141-.156-.281-.141-.141.031-.234.125-.219.234.016.094.141.156.281.125s.234-.125.219-.219z">
+                            </path>
+                        </svg>
+                    </a>
+                    آماده سازی جهت ارائه پروژه نهایی
+                </span>
+                </p>
+            </div>
+            <!-- /.container -->
+        </footer>
+
+        <!--scripts,jQuery src-->
+        <div>
+
+            <!--cdn-->
+            <!-- <script
+                src="http://code.jquery.com/jquery-3.1.1.js"
+                     integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+                     crossorigin="anonymous">
+            </script> -->  <!-- Latest compiled and minified JavaScript -->
+
+            <!-- <script 
+                src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+                     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+                     crossorigin="anonymous">
+            </script> -->
+
+            <!--offline-->
+            <script
+                     src="{% static "css/jquery-3.1.1.js" %}"
+                     integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+                     crossorigin="anonymous">
+            </script>
+
+            <script
+                     src="{% static "css/bootstrap.min.js" %}"
+                     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+                     crossorigin="anonymous">
+            </script>
         </div>
+
+
+
+
+
     </body>
+
+    <!--footer-->
+    <!-- <div id="footer">
+        <a href="https://github.com/hamidzare71/myshop/">
+        <svg xmlns="http://www.w3.org/2000/svg"
+        width="24" height="28"  aria-label="GitHub" >
+        <title>project source on Github</title>
+        <path d="M12 2c6.625 0 12 5.375 12 12 0 5.297-3.437 9.797-8.203 11.391-.609.109-.828-.266-.828-.578 0-.391.016-1.687.016-3.297 0-1.125-.375-1.844-.812-2.219 2.672-.297 5.484-1.313 5.484-5.922 0-1.313-.469-2.375-1.234-3.219.125-.313.531-1.531-.125-3.187-1-.313-3.297 1.234-3.297 1.234a11.28 11.28 0 0 0-6 0S6.704 6.656 5.704 6.969c-.656 1.656-.25 2.875-.125 3.187-.766.844-1.234 1.906-1.234 3.219 0 4.594 2.797 5.625 5.469 5.922-.344.313-.656.844-.766 1.609-.688.313-2.438.844-3.484-1-.656-1.141-1.844-1.234-1.844-1.234-1.172-.016-.078.734-.078.734.781.359 1.328 1.75 1.328 1.75.703 2.141 4.047 1.422 4.047 1.422 0 1 .016 1.937.016 2.234 0 .313-.219.688-.828.578C3.439 23.796.002 19.296.002 13.999c0-6.625 5.375-12 12-12zM4.547 19.234c.031-.063-.016-.141-.109-.187-.094-.031-.172-.016-.203.031-.031.063.016.141.109.187.078.047.172.031.203-.031zm.484.532c.063-.047.047-.156-.031-.25-.078-.078-.187-.109-.25-.047-.063.047-.047.156.031.25.078.078.187.109.25.047zm.469.703c.078-.063.078-.187 0-.297-.063-.109-.187-.156-.266-.094-.078.047-.078.172 0 .281s.203.156.266.109zm.656.656c.063-.063.031-.203-.063-.297-.109-.109-.25-.125-.313-.047-.078.063-.047.203.063.297.109.109.25.125.313.047zm.891.391c.031-.094-.063-.203-.203-.25-.125-.031-.266.016-.297.109s.063.203.203.234c.125.047.266 0 .297-.094zm.984.078c0-.109-.125-.187-.266-.172-.141 0-.25.078-.25.172 0 .109.109.187.266.172.141 0 .25-.078.25-.172zm.906-.156c-.016-.094-.141-.156-.281-.141-.141.031-.234.125-.219.234.016.094.141.156.281.125s.234-.125.219-.219z">
+        </path>
+        </svg>
+        </a>
+        <span class="text_span">آماده سازی جهت ارائه پروژه نهایی</span>
+        </div> -->
 </html>

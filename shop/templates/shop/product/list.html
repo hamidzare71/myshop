@@ -3,35 +3,157 @@
 {% load humanize %}
 
 {% block title %}
-{#{% if category %}{{ category.name }}{% else %}لیست محصولات {% endif %}#}
-لیست محصولات ثابت
+    {#{% if category %}{{ category.name }}{% else %}لیست محصولات {% endif %}#}
+    لیست محصولات
 {% endblock %}
 
 
 {% block content %}
-<div id="sidebar">
-    <h2>{% if category %}{{ category.name }}{% else %} محصولات{% endif %}</h2>
-    <ul>
+
+    <!--mainContainer-->
+    <div class="container-fluid" style="margin-bottom:70px;">
+
+        <!--content-row-->
+        <div class="row">
+
+            <!--sidebar-menu-->
+            <div class="col-lg-3 col-md-2" >
+                <h2 style="text-align:center;">{% if category %}{{ category.name }}{% else %} محصولات{% endif %}</h2>
+                <h4 {% if not category %}class="selected"{% endif %}>
+                    <span><a href="{% url "shop:product_list" %}"> همه کالاها</a></span>
+                </h4>
+                <div class="list-group">
+                    {% for c in categories %}
+                        <h4 {% if category.slug == c.slug %}class="selected"{% endif %}>
+                            <a class="list-group-item" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                        </h4>
+                    {% endfor %}
+                </div>
+            </div><!--sidebar-menu-->
+
+            <!--col9-products-->
+            <div class="col-lg-9">
+
+                <!--under-construction---------------------------------->
+
+                {% for product in products %}
+                    {% if forloop.first %}<div class="row">{% endif %}
+
+                        <!--item-->
+                        <div class="col-lg-4 col-md-6 mb-4 text-right" style="margin-top:10px; width: 30rem;">
+                            <a href="{{ product.get_absolute_url }}">
+                                <img class="card-img-top" src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image_sized.png" %}{% endif %}" alt="not found img">
+                            </a>
+                            <div class="card-body" >
+                                <h4 class="card-title">
+                                    <a href="{{ product.get_absolute_url }}"> {{ product.name }}</a><br>
+                                </h4>
+                                <h5 class="card-text">{{ product.price | intcomma }} تومان</h5>
+                                <!-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p> -->
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                            </div>
+                        </div><!--item-->
+                        {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
+                        {% if forloop.last %}</div>{% endif %}
+                {% endfor %}
+
+
+
+
+                <!--products-->
+                <!--div class="row"-->
+
+                <!--div class="container-fluid"-->
+                <!--every-item-->
+                <!-- <div class="col-lg-4 col-md-6 mb-4 col-md-2" >
+                    {% for product in products %}
+                        <div class="card h-100" >
+                        <a href="{{ product.get_absolute_url }}"><img class="card-img-top" src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" alt="not found img"></a>
+                        <div class="card-body">
+                        <h4 class="card-title">
+                        <a href="{{ product.get_absolute_url }}"> {{ product.name }}</a><br>
+                        </h4>
+                        <h5>{{ product.price | intcomma }} تومان</h5>
+                        <!- - <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p> - ->
+                        </div>
+                        <div class="card-footer">
+                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                        </div>
+                        </div>
+                    {% endfor %}
+                    </div> --><!--end-item-->
+
+
+
+
+
+
+                    <!--construction-scope------------------------------>
+
+
+
+
+
+
+
+
+
+                    <!--original-->
+                    <!-- <h1 >برای تست</h1> -->
+                    <!-- <div class="list-group">
+                        <a href="">hello1</a>
+                        <a href="">hello2</a>
+                        <a href="">hello3</a>
+                        </div> -->
+                        <!--/div--><!--container-->
+                        <!--/div-->
+            </div>
+        </div><!--content-row-->
+    </div><!--mainContainer-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <div id="sidebar">
+        <h2>{% if category %}{{ category.name }}{% else %} محصولات{% endif %}</h2>
+        <ul>
         <li {% if not category %}class="selected"{% endif %}>
-            <a href="{% url "shop:product_list" %}"> همه کالاها</a>
+        <a href="{% url "shop:product_list" %}"> همه کالاها</a>
         </li>
         {% for c in categories %}
-        <li {% if category.slug == c.slug %}class="selected"{% endif %}>
+            <li {% if category.slug == c.slug %}class="selected"{% endif %}>
             <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-        </li>
+            </li>
         {% endfor %}
-    </ul>
-</div>
-<div id="main" class="product-list">
-    <!-- <h1>{% if category %}{{ category.name }}{% else %} محصولات{% endif %}</h1> -->
-    {% for product in products %}
-    <div class="item">
-        <a href="{{ product.get_absolute_url }}">
-            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
-        </a>
-        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>
-        {{ product.price | intcomma }} تومان
-    </div>
-    {% endfor %}
-</div>
-{% endblock %}
+        </ul>
+        </div> -->
+
+        <!-- <div id="main" class="product-list">
+            {% for product in products %}
+                <div class="item">
+                <a href="{{ product.get_absolute_url }}">
+                <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+                </a>
+                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>
+                {{ product.price | intcomma }} تومان
+                </div>
+            {% endfor %}
+            </div> -->
+        {% endblock %}

@@ -1,0 +1,49 @@
+.col-md-2
+{
+    float:right !important;
+    /* border: 4px solid rgba(86, 61, 124, 0.2); */
+    direction:rtl;
+}
+.py-5{padding-top:4px}
+/* .m-0{margin:0!important} */
+.text-center{text-align:center!important}
+.bg-dark{background-color:#343a40!important}
+
+
+.footer {
+    /* position: fixed;    /*fix footer while scrolling*/ */
+    position: fixed !important;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #222;
+    border-color:#080808;
+    color:#9d9d9d;
+}
+
+path{fill:#9d9d9d}  //github icon inFooter has same color to text
+
+/* img height-width as same as card */
+.card-img-top {     
+    width: 100%;
+    max-width:100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+.card img{
+    max-width:100%;
+}
+
+h-100{height:100% !important;}
+
+/* cart styles: */
+
+.continue_btn1{
+    /* margin-bottom: 30px; */
+    /* margin-left: 250px;  */
+    /* margin-right: */
+}
+.pay_btn2{
+    /* margin-right: 150px; */
+}

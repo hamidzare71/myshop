@@ -9,6 +9,7 @@ class Category(models.Model):
             unique = True)
 
     class Meta:
+        #good for better management in admin site
         ordering = ('name',)
         verbose_name = 'Category'
         verbose_name_plural = 'categories'
@@ -18,13 +19,14 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         '''
-        retrieve URL for given ogject(avoid path changing) 
+        rconvention for retrieve URL for given ogject(avoid path changing)
+
         bad way:
         <a href="/language/category/product/{{product.pk}}">Link</a>
         good way:
         <a href="{{product.get_absolute_url}}">Link</a>
 
-        ref:https://stackoverflow.com/questions/43179875/when-to-use-django-get-absolute-url-method 
+        ref:https://stackoverflow.com/questions/43179875/when-to-use-django-get-absolute-url-method
         '''
         return reverse('shop:product_list_by_category', args = [self.slug])
 
@@ -44,7 +46,7 @@ class Product(models.Model):
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
-    class Meta: 
+    class Meta:
         '''
         to query sort by id,slug
         '''
@@ -56,7 +58,7 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         '''
-        retrieve URL for given ogject(avoid path changing) 
+        convention for retrieve URL for given ogject(avoid path changing)
         '''
         return reverse('shop:product_detail',args = [self.id,self.slug])
 

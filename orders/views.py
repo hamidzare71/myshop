@@ -7,9 +7,9 @@ from .tasks import order_created
 def order_create(request):
     cart = Cart(request)
     if request.method == 'POST':
-        form = OrderCreateForm(request.POST)	#binding data to form(bound form)
-	# further more: https://docs.djangoproject.com/en/2.1/topics/forms/
+        #form submitted
 
+        form = OrderCreateForm(request.POST)
         if form.is_valid():
             order = form.save()
             for item in cart:
@@ -18,7 +18,7 @@ def order_create(request):
                         price=item['price'],
                         quantity=item['quantity'])
 
-                # clear the cart
+            # Clean the cart Data(cd)
             cart.clear()
             #launch asynchronous task
             order_created.delay(order.id)

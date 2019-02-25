@@ -3,61 +3,63 @@
 {% load humanize %}
 
 {% block title %}
-مشاهده سبد خرید 
+    مشاهده سبد خرید 
 {% endblock %}
 
 {% block content %}
-<h1>سبد خرید شما</h1>
-<table class="cart">
-    <thead>
-        <tr>
-            <th colspan="1"></th>
-            <th>کالا</th>
-            <th>تعداد</th>
-            <th colspan="1"></th>
-            <th>نرخ</th>
-            <th>قیمت تمام شده</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in cart %}
-        {% with product=item.product %}
-        <tr>
-            <td>
-                <a href="{{ product.get_absolute_url }}">
-                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
-                </a>
-            </td>
-            <td>{{ product.name }}</td>
+    <!--cart-->
+    <div style="margin-right:10px;margin-left:10px">
+        <h1>سبد خرید شما</h1>
+        <table class="cart" style="direction:rtl;">
+            <thead>
+                <tr>
+                    <th colspan="1"></th>
+                    <th>کالا</th>
+                    <th>تعداد</th>
+                    <th colspan="1"></th>
+                    <th>نرخ</th>
+                    <th>قیمت تمام شده</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart %}
+                    {% with product=item.product %}
+                        <tr>
+                            <td>
+                                <a href="{{ product.get_absolute_url }}">
+                                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+                                </a>
+                            </td>
+                            <td>{{ product.name }}</td>
 
-            <td>
-                <form action="{% url "cart:cart_add" product.id %}" method='post'>
-                    {{ item.update_quantity_form.quantity }}
-                    {{ item.update_quantity_form.update }}
-                    <input type="submit" value="Update">
-                    {% csrf_token %}
-                <a href="{% url "cart:cart_remove" product.id%}"> حذف کالا</a>
-                </form>
-            </td>
-            <td colspan="1"></td>
-            <td class="num">{{ item.price | intcomma}} تومان</td>
-            <td class="num">{{ item.total_price | intcomma}} تومان</td>
-        </tr>
-        {% endwith %}
-        {% endfor %}
-        <tr class="total">
-            <td>مجموع</td>
-            <td colspan="4"></td>
-            <td class="num">{{ cart.get_total_price |intcomma}} تومان</td>
-        </tr>
-    </tbody>
-</table>
-<p class="text-right">
-<a href="{% url "shop:product_list" %}" class="button light"> ادامه خرید </a>
+                            <td>
+                                <form action="{% url "cart:cart_add" product.id %}" method='post'>
+                                    {{ item.update_quantity_form.quantity }}
+                                    {{ item.update_quantity_form.update }}
+                                    <input type="submit" value="Update">
+                                    {% csrf_token %}
+                                    <a href="{% url "cart:cart_remove" product.id%}"> حذف کالا</a>
+                                </form>
+                            </td>
+                            <td colspan="1"></td>
+                            <td class="num">{{ item.price | intcomma}} تومان</td>
+                            <td class="num">{{ item.total_price | intcomma}} تومان</td>
+                        </tr>
+                    {% endwith %}
+                {% endfor %}
+                <tr class="total">
+                    <td>مجموع</td>
+                    <td colspan="4"></td>
+                    <td class="num">{{ cart.get_total_price |intcomma}} تومان</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="float:left">
+            <a href="{% url "shop:product_list" %}" class="button light"> ادامه خرید </a>
+        </div>
+        <div style="float:left">
+            <a href="{% url "orders:order_create" %}" class="button">پرداخت </a>
+        </div>
 
-<!-- <a href="#" class="button">Checkout</a> -->
-<a href="{% url "orders:order_create" %}" class="button">
-   پرداخت 
-</a>
-</p>
+    </div><!--cart-->
 {% endblock %}
