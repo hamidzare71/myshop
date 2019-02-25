@@ -25,19 +25,93 @@
             </ul>
             <h4 class="text-center"><br><br><strong>مجموع: {{ cart.get_total_price | intcomma }} تومان</strong></h4>
         </div>
-        <!-- <form action="." method="post" class="order-form"> -->
         <form action="." method="post" class="order-form">
             {% csrf_token %}
+
+            <!--prepared by django-->
             {#{ form.as_p }#}
-            <div style="margin-right:20px;">
+
+            <!--extend for future---------------------------------->
+            <!-- <div style="margin-right:20px;">
+
+                <table style="border-radius:1em;overflow:hidden;">
+
+                    <tr>
+                        <td><label for="first_name">نام:</label><br></td>
+                        <td><input type="text"
+                                   name="{{ form.0.name }}"
+                                   id={{ form.0.id_for_label }}
+                                   {% if form.0.value != None %}
+                                       value="{{ form.0.value|stringformat:'s' }}"
+                                   {% endif %}
+                                       maxlength="100" 
+                                       {% if form.first_name.field.required %} required {% endif %}><br></td>
+                    </tr>
+
+                    <tr>
+                        <td><label for="last_name">نام خانوادگی:</label></td>
+                        <td><input type="{{ form.1.type }}"
+                                   name="{{ form.1.name }}"
+                                   {% if form.1.value != None %}
+                                       value="{{ form.1.value|stringformat:'s' }}"
+                                   {% endif %}
+                                       maxlength="{{ form.1.field.max_length }}" 
+                                       {% if form.1.field.required %} required {% endif %}><br></td>
+                    </tr>
+                    <tr>
+                        <td><label for="email">ایمیل</label></td>
+                        <td><input type="{{ form.2.type }}"
+                                   name="{{ form.2.name }}"
+                                   {% if form.2.value != None %}
+                                       value="{{ form.2.value|stringformat:'s' }}"
+                                   {% endif %}
+                                       maxlength="{{ form.2.field.max_length }}" 
+                                       {% if form.2.field.required %} required {% endif %}><br></td>
+                    </tr>
+                    <tr>
+                        <td><label for="address">آدرس</label></td>
+                        <td><input type="{{ form.3.type }}"
+                                   name="{{ form.3.name }}"
+                                   {% if form.3.value != None %}
+                                       value="{{ form.3.value|stringformat:'s' }}"
+                                   {% endif %}
+                                       maxlength="{{ form.3.field.max_length }}" 
+                                       {% if form.3.field.required %} required {% endif %}><br></td>
+                    </tr>
+                    <tr>
+                        <td><label for="postal_code">کد پستی: </label></td>
+                        <td><input type="{{ form.4.type }}"
+                                   name="{{ form.4.name }}"
+                                   {% if form.4.value != None %}
+                                       value="{{ form.4.value|stringformat:'s' }}"
+                                   {% endif %}
+                                       maxlength="{{ form.4.field.max_length }}" 
+                                       {% if form.4.field.required %} required {% endif %}><br></td>
+                    </tr>
+                    <tr>
+                        <td><label for="city">شهر:</label></td>
+                        <td><input type="{{ form.5.type }}"
+                                   name="{{ form.5.name }}"
+                                   {% if form.5.value != None %}
+                                       value="{{ form.5.value|stringformat:'s' }}"
+                                   {% endif %}
+                                       maxlength="{{ form.5.field.max_length }}" 
+                                       {% if form.5.field.required %} required {% endif %}><br></td>
+                    </tr>
+                </table>
+            </div> -->
+            <!--extend for future---------------------------------->
+
+
+            <div>
                 <table style="border-radius:1em;overflow:hidden;">
                     <tr>
                         <td><label for="first_name">نام:</label><br></td>
-                        <td><input type="text" id="first name="first_name  maxlength="100" required> <br></td>
+                        <td><input type="text" name="first_name"  maxlength="100" required> <br></td>
                     </tr>
                     <tr>
-                        <td><label for="last_name">نام خانوادگی:</label></td>
-                        <td><input type="text" name="last_name" maxlength="100" required> <br></td>
+                        <td><label for="last_name">نام خانوادگی: </label><br></td>
+                        <td><input type="text" name="last_name"  maxlength="100" required> <br></td>
                     </tr>
                     <tr>
                         <td><label for="email">ایمیل:</label></td>
@@ -50,16 +124,14 @@
                     <tr>
                         <td><label for="postal_code">کدپستی:</label></td>
                         <td><input type="text" name="postal_code" maxlength="100" required> <br></td>
-                        #TODO
-                        find api for use iran-post-Co to find city with postal-code
                     </tr>
                     <tr>
                         <td><label for="city">شهر:</label></td>
                         <td><input type="text" name="city" maxlength="100" required> <br></td>
                     </tr>
                 </table>
-                <p><input type="submit" value="درخواست و تایید سفارش"></p><br> 
             </div>
+            <p><input type="submit" value="درخواست و تایید سفارش"></p><br> 
         </form>
     </div><!--order-form-->
 {% endblock %}
