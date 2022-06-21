@@ -26,7 +26,7 @@ Khayyam==3.0.17
 kombu==4.2.2.post1
 localflavor==1.8
 nltk==3.4
-numpy==1.16.0
+numpy==1.22.0
 pandas==0.24.0
 parso==0.3.1
 pexpect==4.6.0
